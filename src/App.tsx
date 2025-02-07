@@ -1,8 +1,5 @@
 import { useState } from "react";
-const bc = new BroadcastChannel("highlight-line");
-bc.onmessage = (event) => {
-  console.log(event.data);
-};
+
 const textFromUrl = (() => {
   // read from url param ?json=...
   const url = new URL(window.location.href);
