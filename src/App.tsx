@@ -1,0 +1,38 @@
+import { useState } from "react";
+const bc = new BroadcastChannel("highlight-line");
+bc.onmessage = (event) => {
+  console.log(event.data);
+};
+const textFromUrl = (() => {
+  // read from url param ?json=...
+  const url = new URL(window.location.href);
+  const text = url.searchParams.get("text");
+  return text ?? "";
+})();
+function App() {
+  const [text, setText] = useState(textFromUrl);
+  return (
+    <>
+      <div>cosense-userscript-study</div>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      {window.opener && (
+        <button
+          onClick={() => {
+            if (window.opener) {
+              window.opener.postMessage(text, "*");
+              window.close();
+            }
+          }}
+        >
+          done
+        </button>
+      )}
+    </>
+  );
+}
+
+export default App;
