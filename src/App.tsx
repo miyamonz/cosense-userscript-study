@@ -6,6 +6,7 @@ const textFromUrl = (() => {
   const text = url.searchParams.get("text");
   return text ?? "";
 })();
+
 function App() {
   const [text, setText] = useState(textFromUrl);
   return (
@@ -15,6 +16,7 @@ function App() {
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        autoFocus
       />
       {window.opener && (
         <button
