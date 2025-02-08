@@ -11,7 +11,7 @@ function App() {
   const [text, setText] = useState(textFromUrl);
   return (
     <>
-      <div>cosense-userscript-study</div>
+      <div>外部サイトでCosenseの行を編集するデモ</div>
       <input
         type="text"
         value={text}
